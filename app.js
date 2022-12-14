@@ -80,7 +80,7 @@ function background() {
             $(this).removeClass('present');
             $(this).addClass('future');
         }
-    }):
+    });
 }
 
 $(document).ready(function() {
@@ -94,4 +94,21 @@ $(document).ready(function() {
         console.log(time);
         localStorage.setItem(time, JSON.stringify(value));
     });
-}
+
+
+$(".saveBtn").on("click", function() {
+    userInput = $(this).siblings(".userInput").val();
+    ().trim();
+    console.log(userInput);
+    hourSpan = $(this).siblings("input-group-prepend").text().trim();
+    console.log(hourSpan);
+    localStorage.setItem(hourSpan, JSON.stringify(userInput));
+})
+
+$("clearDay").on("click", function() {
+    localStorage.clear();
+    location.reload();
+    initPage();
+})
+
+});
