@@ -1,4 +1,4 @@
-var currentDate = moment().fomat('dddd')+""+moment().format("Do MMM YYYY");
+var currentDate = moment().format('dddd')+""+moment().format("Do MMM YYYY");
 var currentHour = moment().format('h:mm:ss a');
 
 var nineAm = $("#9am");
@@ -29,7 +29,7 @@ var intervaL = setInterval(function() {
 
 function initPage() {
 
-    console.log("Current Hour " + hrs);
+    console.log("Current Hour " + hour);
 
     var init9 = JSON.parse(localStorage.getItem("09:00 am"));
     nineAm.val(init9);
@@ -69,11 +69,11 @@ function background() {
     $('.form-control').each(function() {
         var blockTime = parseInt($(this).attr('id'));
         hour = parseInt(hour);
-      console.log(timeTest);
+      console.log(blockTime);
       console.log(hour);
-        if (blockTime < hrs) {
+        if (blockTime < hour) {
             $(this).addClass('past');
-        } else if (blockTime === hrs) {
+        } else if (blockTime === hour) {
             $(this).addClass('future');
         } else {
             $(this).addClass('present');
@@ -95,7 +95,6 @@ $(document).ready(function() {
 
 $("clearDay").on("click", function() {
     localStorage.clear();
-    location.reload();
     initPage();
 })
 
