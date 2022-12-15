@@ -13,7 +13,7 @@ var fivePm = $("#17pm");
 var sixPm = $("#18pm");
 var sevenPm = $("#19pm");
 
-var hrs = moment() . hours();
+var hour = moment() . hours();
 var userInput = $(".userInput");
 var hrSpan = $(".hrSpan");
 var saveBtn = $(".saveBtn");
@@ -68,17 +68,15 @@ function initPage() {
 function background() {
     $('.form-control').each(function() {
         var blockTime = parseInt($(this).attr('id'));
-        console.log(blockTime);
-        console.log(hrs);
+        hour = parseInt(hour);
+      console.log(timeTest);
+      console.log(hour);
         if (blockTime < hrs) {
             $(this).addClass('past');
         } else if (blockTime === hrs) {
-            $(this).removeClass('past');
-            $(this).addClass('present');
-        } else {
-            $(this).removeClass('past');
-            $(this).removeClass('present');
             $(this).addClass('future');
+        } else {
+            $(this).addClass('present');
         }
     });
 }
@@ -86,24 +84,14 @@ function background() {
 $(document).ready(function() {
     initPage();
     background();
-    saveBtn.on('click', function() {
-        console.log(this);
-        var value = $(this).siblings('.form-control').val();
-        var time = $(this).siblings('.input-group-prepend').text().trim();
-        console.log(value);
-        console.log(time);
-        localStorage.setItem(time, JSON.stringify(value));
-    });
-
-
-$(".saveBtn").on("click", function() {
-    userInput = $(this).siblings(".userInput").val();
-    ().trim();
-    console.log(userInput);
-    hourSpan = $(this).siblings("input-group-prepend").text().trim();
-    console.log(hourSpan);
-    localStorage.setItem(hourSpan, JSON.stringify(userInput));
-})
+    
+    $(saveBtn).on('click', function() {
+        userInput = $(this).siblings(".form-control").val().trim();
+        console.log(userInput);
+        hourSpan = $(this).siblings(".input-group-prepend").text().trim();
+        console.log(hourSpan);
+        localStorage.setItem(hourSpan, JSON.stringify(userInput));
+      })
 
 $("clearDay").on("click", function() {
     localStorage.clear();
